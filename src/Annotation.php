@@ -19,6 +19,7 @@ namespace Codeburner\Annotator;
 class Annotation
 {
 
+	protected $name;
 	protected $arguments;
 
 	public function __construct(array $annotation)
