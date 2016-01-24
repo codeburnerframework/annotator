@@ -1,5 +1,11 @@
 # Codeburner Annotator
 
+[![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg)](LICENSE)
+[![Build Status](https://travis-ci.org/codeburnerframework/annotator.svg?branch=master)](https://travis-ci.org/codeburnerframework/annotator)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/codeburnerframework/annotator/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/codeburnerframework/annotator/?branch=master)
+
+[![SensioLabsInsight](https://insight.sensiolabs.com/projects/843d09d5-7708-4fee-9e1b-5d24b27091a5/big.png)](https://insight.sensiolabs.com/projects/843d09d5-7708-4fee-9e1b-5d24b27091a5)
+
 A simple and fast annotation support for PHP.
 
 ## Instalation
