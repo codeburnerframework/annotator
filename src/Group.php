@@ -45,7 +45,7 @@ class Group
 
 	public function has($name)
 	{
-		return isset($this->annotations);
+		return isset($this->annotations[$name]);
 	}
 
 }
