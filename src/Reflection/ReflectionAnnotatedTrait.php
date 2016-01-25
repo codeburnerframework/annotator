@@ -38,7 +38,7 @@ trait ReflectionAnnotatedTrait
 	{
 		preg_match_all("~@(" . implode("|", (array) $name) . ')\s?(.*)?~i', $this->getDoc(), $annotations, PREG_SET_ORDER);
 		
-		if ($annotations === null) {
+		if (empty($annotations)) {
 			return null;
 		}
 
