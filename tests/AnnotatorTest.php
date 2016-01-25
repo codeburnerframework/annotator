@@ -29,7 +29,7 @@ class AnnotatorTest extends PHPUnit_Framework_TestCase
 	public function testSimpleAnnotation()
 	{
 		$this->assertTrue($this->annotator->hasAnnotation('testAnnotation'));
-		$this->assertEquals($this->annotator->getAnnotation('testAnnotation')->getArguments(), 'test');
+		$this->assertEquals($this->annotator->getAnnotation('testAnnotation')->getArguments(), ['test']);
 	}
 
 	public function testComplexAnnotation()
