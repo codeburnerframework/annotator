@@ -29,6 +29,8 @@ Don't forget to install or update the composer and include the `vendor/autoload.
 
 - [Introduction](#introduction)
 - [Syntax](#syntax)
+- [Annotation Classes](#annotation-classes)
+- [Filtering Values](#filtering-values)
 - [Basic Usage](#basic-usage)
 
 ## Introduction
@@ -63,11 +65,8 @@ use Foo\Bar\BarAnnotation as AliasedAnnotation;
  * @FooAnnotation -f
  * @AliasedAnnotation -f
  */
-
- // BarAnnotation is Foo\Bar\BarAnnotation class.
- // FooAnnotation is Foo\FooAnnotation class.
- // AliasedAnnotation is Foo\Bar\BarAnnotation class.
 ```
+`BarAnnotation` is `Foo\Bar\BarAnnotation` class, `FooAnnotation` is `Foo\FooAnnotation` class and `AliasedAnnotation` is `Foo\Bar\BarAnnotation class`.
 > **NOTE:** All defined annotations must have the `-f` flag in usage, this means that it's a file and can have a filter.
 
 ## Filtering Values
