@@ -27,5 +27,32 @@ if (!trait_exists('Codeburner\Annotator\Reflection\ReflectionAnnotatedTrait', fa
 
 class ReflectionAnnotatedClass extends \ReflectionClass
 {
+
 	use ReflectionAnnotatedTrait;
+
+	/**
+	 * {inheritDoc}
+	 */
+
+	public function getProperties($filter = \ReflectionProperty::IS_STATIC | \ReflectionProperty::IS_PUBLIC | \ReflectionProperty::IS_PROTECTED | \ReflectionProperty::IS_PRIVATE)
+	{
+		$properties = parent::getProperties($filter);
+		$annotatedProperties = [];
+
+		foreach ($properties as $property) {
+			$annotatedProperties[] = new ReflectionAnnotatedProperty($this->name, $property->name);
+		}
+
+		return $annotatedProperties;
+	}
+
+	/**
+	 * {inheritDoc}
+	 */
+
+	public function getProperty($name)
+	{
+		return new ReflectionAnnotatedProperty($this->name, $name);
+	}
+
 }
