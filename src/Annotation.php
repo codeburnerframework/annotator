@@ -108,4 +108,13 @@ class Annotation
 		// void
 	}
 
+	public function __toString()
+	{
+		if (count($this->arguments) === 1) {
+			return (string) $this->arguments[0];
+		}
+
+		throw new Exceptions\AnnotationException("The annotation cannot be converted to string.");
+	}
+
 }
