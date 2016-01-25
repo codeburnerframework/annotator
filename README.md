@@ -32,6 +32,7 @@ Don't forget to install or update the composer and include the `vendor/autoload.
 - [Annotation Classes](#annotation-classes)
 - [Filtering Values](#filtering-values)
 - [Basic Usage](#basic-usage)
+- [Real World Usage](#real-world-usage)
 
 ## Introduction
 
@@ -73,7 +74,7 @@ use Foo\Bar\BarAnnotation as AliasedAnnotation;
 
 When defining a class for an annotation the arguments could be formmated or filtered by the implementation of method `public function filter()`. 
 
-```
+```php
 class MyAnnotation extends Codeburner\Annotator\Annotation
 {
 	public function filter()
@@ -84,6 +85,39 @@ class MyAnnotation extends Codeburner\Annotator\Annotation
 ```
 
 ## Basic Usage
+
+```php
+
+/**
+ * @cook Crystals
+ * @with {"local": "trailer", "clothes": ["apron", "briefs"]}
+ */
+
+class HeisenbergController
+{
+
+	/**
+	 * @number 1000
+	 */
+
+	public function count()
+	{
+
+	}
+
+}
+
+$reflection = new Codeburner\Annotator\Reflection\ReflectionAnnotatedClass(HeisenbergController::class);
+
+echo "I'll cook ", 
+		$reflection->getMethod("count")->getAnnotation("number"), " ", 
+		$reflection->getAnnotation("cook"), " in my ", 
+		$reflection->getAnnotation("with")->getArgument("local"), " with wearing ",
+		implode(", ", $reflection->getAnnotation("with")->getArgument("clothes"));
+
+```
+
+## Real World Usage
 
 For example registering routes in the [codeburner router system](https://github.com/codeburnerframework/router) only using annotations in a controller.
 
@@ -109,7 +143,7 @@ class ArticleController
 
 	}
 }
-}
+
 ```
 
 In this code there is three annotations, `@RouteStrategy`, `@RoutePrefix` and `@Route`. The router system will read these annotations and build a route based on then.
