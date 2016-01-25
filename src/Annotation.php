@@ -19,42 +19,93 @@ namespace Codeburner\Annotator;
 class Annotation
 {
 
+	/**
+	 * The annotation token.
+	 *
+	 * @var string
+	 */
+
 	protected $name;
+
+	/**
+	 * Formmated arguments, but not casted.
+	 *
+	 * @var array
+	 */
+
 	protected $arguments;
 
-	public function __construct(array $annotation)
+	/**
+	 * @param string $name
+	 * @param string $arguments
+	 */
+
+	public function __construct($name, $arguments)
 	{
-		$this->name = $annotation[1];
-		$arguments  = $annotation[2];
+		$this->name = $name;
 
 		if (strpos($arguments, "{") === 0) {
 			   $this->arguments = json_decode($arguments, true);
-		} else $this->arguments = trim($arguments);
+		} else $this->arguments = (array) trim($arguments);
+
+		$this->filter();
 	}
+
+	/**
+	 * @return string
+	 */
 
 	public function getName()
 	{
 		return $this->name;
 	}
 
+	/**
+	 * @return array
+	 */
+
 	public function getArguments()
 	{
 		return $this->arguments;
 	}
 
+	/**
+	 * @return string
+	 */
+
 	public function getArgument($name)
 	{
-		return $this->arguments[$name];
+		return isset($this->arguments[$name]) ? $this->arguments[$name] : null;
 	}
+
+	/**
+	 * @return string
+	 */
 
 	public function getArgumentCount()
 	{
 		return count($this->arguments);
 	}
 
+	/**
+	 * @return boolean
+	 */
+
 	public function hasArgument($name)
 	{
 		return isset($this->arguments[$name]);
+	}
+
+	/**
+	 * Overwrite this method to parse and validate the arguments in a
+	 * new Annotation definition.
+	 *
+	 * @return void
+	 */
+
+	protected function filter()
+	{
+		// void
 	}
 
 }

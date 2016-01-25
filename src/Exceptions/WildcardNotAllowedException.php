@@ -17,12 +17,12 @@ namespace Codeburner\Annotator\Exceptions;
  * @author Alex Rohleder <contato@alexrohleder.com.br>
  */
 
-class GroupingNotAllowedException extends AnnotationException
+class WildcardNotAllowedException extends AnnotationException
 {
 
 	public function __construct($method)
 	{
-		parent::__construct("Annotator method `$method` does not allow grouping or regex in annotation name.");
+		parent::__construct("Annotator method `$method` does not allow wildcards in annotation name.");
 	}
 
 }

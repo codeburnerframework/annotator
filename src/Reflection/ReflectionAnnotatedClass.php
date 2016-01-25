@@ -15,8 +15,8 @@ namespace Codeburner\Annotator\Reflection;
  * This bust significantly the performance.
  */
 
-if (!trait_exists('Codeburner\Annotator\Reflection\ReflectionAnnotatedTrait', false)) {
-	include __DIR__ . '/ReflectionAnnotatedTrait.php';
+if (!trait_exists('Codeburner\Annotator\Reflection\AnnotationTrait', false)) {
+	include __DIR__ . '/AnnotationTrait.php';
 }
 
 /**
@@ -28,15 +28,20 @@ if (!trait_exists('Codeburner\Annotator\Reflection\ReflectionAnnotatedTrait', fa
 class ReflectionAnnotatedClass extends \ReflectionClass
 {
 
-	use ReflectionAnnotatedTrait;
+	use AnnotationTrait;
 
 	/**
 	 * {inheritDoc}
 	 */
 
-	public function getProperties($filter = \ReflectionProperty::IS_STATIC | \ReflectionProperty::IS_PUBLIC | \ReflectionProperty::IS_PROTECTED | \ReflectionProperty::IS_PRIVATE)
+	public function getProperties($filter = null)
 	{
-		$properties = parent::getProperties($filter);
+		$properties = parent::getProperties($filter === null ? 
+																\ReflectionProperty::IS_STATIC    | 
+																\ReflectionProperty::IS_PUBLIC    | 
+																\ReflectionProperty::IS_PROTECTED | 
+																\ReflectionProperty::IS_PRIVATE 
+																: $filter);
 		$annotatedProperties = [];
 
 		foreach ($properties as $property) {
@@ -53,6 +58,54 @@ class ReflectionAnnotatedClass extends \ReflectionClass
 	public function getProperty($name)
 	{
 		return new ReflectionAnnotatedProperty($this->name, $name);
+	}
+
+	/**
+	 * {inheritDoc}
+	 */
+
+	public function getMethods($filter = null)
+	{
+		$methods = parent::getMethods($filter === null ? 
+																\ReflectionMethod::IS_STATIC    | 
+																\ReflectionMethod::IS_PUBLIC    | 
+																\ReflectionMethod::IS_PROTECTED | 
+																\ReflectionMethod::IS_PRIVATE   |
+																\ReflectionMethod::IS_ABSTRACT  |
+																\ReflectionMethod::IS_FINAL
+																: $filter);
+		$annotatedMethods = [];
+
+		foreach ($Methods as $method) {
+			$annotatedMethods[] = new ReflectionAnnotatedMethod($this->name, $method->name);
+		}
+
+		return $annotatedMethods;
+	}
+
+	/**
+	 * {inheritDoc}
+	 */
+
+	public function getMethod($name)
+	{
+		return new ReflectionAnnotatedMethod($this->name, $name);
+	}
+
+	/**
+	 * {inheritDoc}
+	 */
+
+	public function getTraits($filter = null)
+	{
+		$traits = parent::getTraits();
+		$annotatedTraits = [];
+
+		foreach ($Traits as $trait) {
+			$annotatedTraits[] = new ReflectionAnnotatedClass($trait->name);
+		}
+
+		return $annotatedTraits;
 	}
 
 }

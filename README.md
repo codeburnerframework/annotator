@@ -38,18 +38,50 @@ Don't forget to install or update the composer and include the `vendor/autoload.
 
 ## Syntax
 
-The annotations need to start with `@` and be inside a doc block `/**`. Annotation names receive the same rules of vars in PHP, and they value are everything after the first space. There is support three types of data. 
-
-- Empty annotations with no value, only representation. 
-- Simple annotations are strings and numerics.
-- Complex annotations is composed by a json with no rule about the deep.
+The annotations need to start with `@` and be inside a doc block `/**`. Annotation names receive the same rules of vars in PHP, and they value can be everything BUT it will be parsed as string, the annotator does not make any cast and arrays must be write as jsons.
 
 ```php
 /**
  * @EmptyAnnotation
- * @SimpleAnnotation 1
+ * @OneAnnotation 1
  * @ComplexAnnotation {"key1": "value1", "key2": ["value2-1", "value2-2"]}
  */
+```
+
+## Annotation Classes
+
+By default any annotation is a `Codeburner\Annotator\Annotation` but you can specialize one annotation adding logic to they. For it you must create a new class that extends the `Codeburner\Annotator\Annotation`. The annotation name will be the full class name, but can be affected by the `use` and `namespace` statements.
+
+```php
+namespace Foo\Bar;
+
+use Foo\FooAnnotation;
+use Foo\Bar\BarAnnotation as AliasedAnnotation;
+
+/**
+ * @BarAnnotation -f
+ * @FooAnnotation -f
+ * @AliasedAnnotation -f
+ */
+
+ // BarAnnotation is Foo\Bar\BarAnnotation class.
+ // FooAnnotation is Foo\FooAnnotation class.
+ // AliasedAnnotation is Foo\Bar\BarAnnotation class.
+```
+> **NOTE:** All defined annotations must have the `-f` flag in usage, this means that it's a file and can have a filter.
+
+## Filtering Values
+
+When defining a class for an annotation the arguments could be formmated or filtered by the implementation of method `public function filter()`. 
+
+```
+class MyAnnotation extends Codeburner\Annotator\Annotation
+{
+	public function filter()
+	{
+		array_filter($this->arguments, 'strtoupper');
+	}
+}
 ```
 
 ## Basic Usage
@@ -57,16 +89,20 @@ The annotations need to start with `@` and be inside a doc block `/**`. Annotati
 For example registering routes in the [codeburner router system](https://github.com/codeburnerframework/router) only using annotations in a controller.
 
 ```php
+use Codeburner\Router\Annotations\RouteStrategyAnnotation as RouteStrategy;
+use Codeburner\Router\Annotations\RoutePrefixAnnotation as RoutePrefix;
+use Codeburner\Router\Annotations\RouteAnnotation as Route;
+
 /**
- * @RouteStrategy \Codeburner\Router\Strategy\SimpleDispatchStrategy
- * @RoutePrefix /blog
+ * @RouteStrategy -f \Codeburner\Router\Strategy\SimpleDispatchStrategy
+ * @RoutePrefix -f /blog
  */
 
 class ArticleController
 {
 
 	/**
-	 * @Route /
+	 * @Route -f /
 	 */
 
 	public function index()

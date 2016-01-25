@@ -15,8 +15,8 @@ namespace Codeburner\Annotator\Reflection;
  * This bust significantly the performance.
  */
 
-if (!trait_exists('Codeburner\Annotator\Reflection\ReflectionAnnotatedTrait', false)) {
-	include __DIR__ . '/ReflectionAnnotatedTrait.php';
+if (!trait_exists('Codeburner\Annotator\Reflection\AnnotationTrait', false)) {
+	include __DIR__ . '/AnnotationTrait.php';
 }
 
 /**
@@ -27,5 +27,5 @@ if (!trait_exists('Codeburner\Annotator\Reflection\ReflectionAnnotatedTrait', fa
 
 class ReflectionAnnotatedMethod extends \ReflectionMethod
 {
-	use ReflectionAnnotatedTrait;
+	use AnnotationTrait;
 }
