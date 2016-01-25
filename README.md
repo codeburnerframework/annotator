@@ -4,7 +4,7 @@
 [![Build Status](https://travis-ci.org/codeburnerframework/annotator.svg?branch=master)](https://travis-ci.org/codeburnerframework/annotator)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/codeburnerframework/annotator/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/codeburnerframework/annotator/?branch=master)
 
-[![SensioLabsInsight](https://insight.sensiolabs.com/projects/843d09d5-7708-4fee-9e1b-5d24b27091a5/big.png)](https://insight.sensiolabs.com/projects/843d09d5-7708-4fee-9e1b-5d24b27091a5)
+[![SensioLabsInsight](https://insight.sensiolabs.com/projects/bd481c37-a371-4e91-b2ad-546c5d00263c/big.png)](https://insight.sensiolabs.com/projects/bd481c37-a371-4e91-b2ad-546c5d00263c)
 
 A simple and fast annotation support for PHP.
 
@@ -54,7 +54,7 @@ The annotations need to start with `@` and be inside a doc block `/**`. Annotati
 
 ## Basic Usage
 
-For example registering routes in the (codeburner router system)[https://github.com/codeburnerframework/router] only using annotations in a controller.
+For example registering routes in the [codeburner router system](https://github.com/codeburnerframework/router) only using annotations in a controller.
 
 ```php
 /**
