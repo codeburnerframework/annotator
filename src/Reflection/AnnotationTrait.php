@@ -150,7 +150,7 @@ trait AnnotationTrait
 
         preg_match_all("~use\s([\w\\\\]+)(\sas\s(\w+))?;~i", $this->getClassFileHeader(), $matches, PREG_SET_ORDER);
 
-        foreach ($matches as $match) {
+        foreach ((array) $matches as $match) {
             // if an alias exists.
             if (isset($match[3])) {
                 $this->useStatementsCache[$match[3]] = $match[1];
