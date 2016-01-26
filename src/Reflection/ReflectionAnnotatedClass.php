@@ -41,7 +41,7 @@ class ReflectionAnnotatedClass extends ReflectionClass
 	public function getProperties($filter = null)
 	{
 		$defaultFilter = ReflectionProperty::IS_STATIC    | ReflectionProperty::IS_PUBLIC | 
-						 ReflectionProperty::IS_PROTECTED | ReflectionProperty::IS_PRIVATE 
+						 ReflectionProperty::IS_PROTECTED | ReflectionProperty::IS_PRIVATE;
 		$properties = parent::getProperties($filter === null ? $defaultFilter : $filter);
 		$annotatedProperties = [];
 
