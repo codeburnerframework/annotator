@@ -10,6 +10,10 @@
 
 namespace Codeburner\Annotator\Reflection;
 
+use ReflectionClass;
+use ReflectionProperty;
+use ReflectionMethod;
+
 /**
  * Avoid the autoload by manually including the required files.
  * This bust significantly the performance.
@@ -25,7 +29,7 @@ if (!trait_exists('Codeburner\Annotator\Reflection\AnnotationTrait', false)) {
  * @author Alex Rohleder <contato@alexrohleder.com.br>
  */
 
-class ReflectionAnnotatedClass extends \ReflectionClass
+class ReflectionAnnotatedClass extends ReflectionClass
 {
 
 	use AnnotationTrait;
@@ -36,12 +40,9 @@ class ReflectionAnnotatedClass extends \ReflectionClass
 
 	public function getProperties($filter = null)
 	{
-		$properties = parent::getProperties($filter === null ? 
-																\ReflectionProperty::IS_STATIC    | 
-																\ReflectionProperty::IS_PUBLIC    | 
-																\ReflectionProperty::IS_PROTECTED | 
-																\ReflectionProperty::IS_PRIVATE 
-																: $filter);
+		$defaultFilter = ReflectionProperty::IS_STATIC    | ReflectionProperty::IS_PUBLIC | 
+						 ReflectionProperty::IS_PROTECTED | ReflectionProperty::IS_PRIVATE 
+		$properties = parent::getProperties($filter === null ? $defaultFilter : $filter);
 		$annotatedProperties = [];
 
 		foreach ($properties as $property) {
@@ -66,17 +67,12 @@ class ReflectionAnnotatedClass extends \ReflectionClass
 
 	public function getMethods($filter = null)
 	{
-		$methods = parent::getMethods($filter === null ? 
-																\ReflectionMethod::IS_STATIC    | 
-																\ReflectionMethod::IS_PUBLIC    | 
-																\ReflectionMethod::IS_PROTECTED | 
-																\ReflectionMethod::IS_PRIVATE   |
-																\ReflectionMethod::IS_ABSTRACT  |
-																\ReflectionMethod::IS_FINAL
-																: $filter);
+		$defaultFilter = ReflectionMethod::IS_STATIC  | ReflectionMethod::IS_PUBLIC   | ReflectionMethod::IS_PROTECTED | 
+						 ReflectionMethod::IS_PRIVATE | ReflectionMethod::IS_ABSTRACT | ReflectionMethod::IS_FINAL;
+		$methods = parent::getMethods($filter === null ? $defaultFilter : $filter);
 		$annotatedMethods = [];
 
-		foreach ($Methods as $method) {
+		foreach ($methods as $method) {
 			$annotatedMethods[] = new ReflectionAnnotatedMethod($this->name, $method->name);
 		}
 
@@ -101,7 +97,7 @@ class ReflectionAnnotatedClass extends \ReflectionClass
 		$traits = parent::getTraits();
 		$annotatedTraits = [];
 
-		foreach ($Traits as $trait) {
+		foreach ($traits as $trait) {
 			$annotatedTraits[] = new ReflectionAnnotatedClass($trait->name);
 		}
 
