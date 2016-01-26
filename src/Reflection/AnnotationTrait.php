@@ -120,7 +120,6 @@ trait AnnotationTrait
 
     protected function getAnnotationObject($annotation)
     {
-        $use = $this->getUseStatements();
         $name = $annotation[1];
         $value = $annotation[4];
         $flag = $annotation[3];
