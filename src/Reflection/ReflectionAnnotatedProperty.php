@@ -29,8 +29,24 @@ class ReflectionAnnotatedProperty extends \ReflectionProperty
 {
 	use AnnotationTrait;
 
+	/**
+	 * @return string
+	 */
+
 	public function getNamespaceName()
 	{
 		return $this->class->getNamespaceName();
 	}
+
+	/**
+	 * Get the property class start line.
+	 *
+	 * @return int
+	 */
+
+	public function getStartLine()
+	{
+		return $this->class->getStartLine();
+	}
+
 }
