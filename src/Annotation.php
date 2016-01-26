@@ -45,7 +45,7 @@ class Annotation
 		$this->name = $name;
 
 		if (strpos($arguments, "{") === 0) {
-			   $this->arguments = json_decode($arguments, true);
+			   $this->arguments = (array) json_decode($arguments, true);
 		} else $this->arguments = (array) trim($arguments);
 
 		$this->filter();
@@ -107,6 +107,10 @@ class Annotation
 	{
 		// void
 	}
+
+	/**
+	 * @return string
+	 */
 
 	public function __toString()
 	{
