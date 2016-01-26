@@ -28,4 +28,9 @@ if (!trait_exists('Codeburner\Annotator\Reflection\AnnotationTrait', false)) {
 class ReflectionAnnotatedProperty extends \ReflectionProperty
 {
 	use AnnotationTrait;
+
+	public function getNamespaceName()
+	{
+		return $this->class->getNamespaceName();
+	}
 }
