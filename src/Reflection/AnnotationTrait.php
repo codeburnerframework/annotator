@@ -33,6 +33,7 @@ trait AnnotationTrait
 
 	abstract public function getDocComment();
     abstract public function getNamespaceName();
+    abstract public function getStartLine();
 
     /**
      * @var string
