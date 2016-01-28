@@ -30,7 +30,7 @@ class Annotation
     /**
      * Formmated arguments, but not casted.
      *
-     * @var array
+     * @var string[]
      */
 
     protected $arguments;
@@ -70,16 +70,18 @@ class Annotation
     }
 
     /**
+     * @param string $name
+     * @param string $default = null
      * @return string
      */
 
-    public function getArgument($name)
+    public function getArgument($name, $default = null)
     {
-        return isset($this->arguments[$name]) ? $this->arguments[$name] : null;
+        return isset($this->arguments[$name]) ? $this->arguments[$name] : $default;
     }
 
     /**
-     * @return string
+     * @return int
      */
 
     public function getArgumentCount()
@@ -88,6 +90,7 @@ class Annotation
     }
 
     /**
+     * @param string $name
      * @return boolean
      */
 

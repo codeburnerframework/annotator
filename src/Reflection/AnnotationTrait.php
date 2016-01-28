@@ -68,7 +68,7 @@ trait AnnotationTrait
      * Get all annotations, or several of then. Note that here annotations can
      * have regex on they name.
      *
-     * @param array $names if empty will return all annotations. Can have regex.
+     * @param string[] $names if empty will return all annotations. Can have regex.
      * @return array ["AnnotationName" => Annotation]
      */
 
@@ -90,6 +90,7 @@ trait AnnotationTrait
     /**
      * Check if an annotation exists
      *
+     * @param string $name
      * @return bool
      */
 
@@ -101,7 +102,8 @@ trait AnnotationTrait
     /**
      * Find all annotations that the name match the $pattern
      *
-     * @return array
+     * @param string $pattern
+     * @return string[]
      */
 
     protected function getMatchedAnnotations($pattern)
@@ -114,7 +116,7 @@ trait AnnotationTrait
      * Instantiate a new Annotation object, if the annotation has a specific object
      * then resolve the name and create it.
      *
-     * @param array $annotation The getMatchedAnnotation annotation return.
+     * @param string[] $annotation The getMatchedAnnotation annotation return.
      * @return Annotation
      */
 
@@ -139,7 +141,7 @@ trait AnnotationTrait
     /**
      * Get all use statements from the annotated reflection file.
      *
-     * @return array
+     * @return string[] [ALIAS_NAME => FULL_CLASS_NAME];
      */
 
     protected function getUseStatements()
@@ -187,6 +189,7 @@ trait AnnotationTrait
     /**
      * Resolve annotation name.
      *
+     * @param string $name
      * @return string
      */
 
