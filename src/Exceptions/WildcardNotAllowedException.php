@@ -20,9 +20,9 @@ namespace Codeburner\Annotator\Exceptions;
 class WildcardNotAllowedException extends AnnotationException
 {
 
-	public function __construct($method)
-	{
-		parent::__construct("Annotator method `$method` does not allow wildcards in annotation name.");
-	}
+    public function __construct($method)
+    {
+        parent::__construct("Annotator method `$method` does not allow wildcards in annotation name.");
+    }
 
 }

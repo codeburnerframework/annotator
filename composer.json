@@ -1,23 +1,23 @@
 {
-	"name": "codeburner/annotator",
-	"description": "Implements a simple, fast and useful annotation support.",
-	"keywords": ["annotation", "codeburner"],
-	"license": "MIT",
-	"require": {
-		"php": ">=5.5.0"
-	},
-	"authors": [
-		{
-			"name": "Alex Rohleder",
-			"email": "alexrohleder96@outlook.com"
-		}
-	],
-	"autoload": {
-		"psr-4": {
-			"Codeburner\\Annotator\\": "src"
-		}
-	},
-	"require-dev": {
-		"phpunit/phpunit": "~4.0"
-	}
+    "name": "codeburner/annotator",
+    "description": "Implements a simple, fast and useful annotation support.",
+    "keywords": ["annotation", "codeburner"],
+    "license": "MIT",
+    "require": {
+        "php": ">=5.5.0"
+    },
+    "authors": [
+        {
+            "name": "Alex Rohleder",
+            "email": "alexrohleder96@outlook.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Codeburner\\Annotator\\": "src"
+        }
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~4.0"
+    }
 }

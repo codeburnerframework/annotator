@@ -19,106 +19,106 @@ namespace Codeburner\Annotator;
 class Annotation
 {
 
-	/**
-	 * The annotation token.
-	 *
-	 * @var string
-	 */
+    /**
+     * The annotation token.
+     *
+     * @var string
+     */
 
-	protected $name;
+    protected $name;
 
-	/**
-	 * Formmated arguments, but not casted.
-	 *
-	 * @var array
-	 */
+    /**
+     * Formmated arguments, but not casted.
+     *
+     * @var array
+     */
 
-	protected $arguments;
+    protected $arguments;
 
-	/**
-	 * @param string $name
-	 * @param string $arguments
-	 */
+    /**
+     * @param string $name
+     * @param string $arguments
+     */
 
-	public function __construct($name, $arguments)
-	{
-		$this->name = $name;
+    public function __construct($name, $arguments)
+    {
+        $this->name = $name;
 
-		if (strpos($arguments, "{") === 0) {
-			   $this->arguments = (array) json_decode($arguments, true);
-		} else $this->arguments = (array) trim($arguments);
+        if (strpos($arguments, "{") === 0) {
+               $this->arguments = (array) json_decode($arguments, true);
+        } else $this->arguments = (array) trim($arguments);
 
-		$this->filter();
-	}
+        $this->filter();
+    }
 
-	/**
-	 * @return string
-	 */
+    /**
+     * @return string
+     */
 
-	public function getName()
-	{
-		return $this->name;
-	}
+    public function getName()
+    {
+        return $this->name;
+    }
 
-	/**
-	 * @return array
-	 */
+    /**
+     * @return array
+     */
 
-	public function getArguments()
-	{
-		return $this->arguments;
-	}
+    public function getArguments()
+    {
+        return $this->arguments;
+    }
 
-	/**
-	 * @return string
-	 */
+    /**
+     * @return string
+     */
 
-	public function getArgument($name)
-	{
-		return isset($this->arguments[$name]) ? $this->arguments[$name] : null;
-	}
+    public function getArgument($name)
+    {
+        return isset($this->arguments[$name]) ? $this->arguments[$name] : null;
+    }
 
-	/**
-	 * @return string
-	 */
+    /**
+     * @return string
+     */
 
-	public function getArgumentCount()
-	{
-		return count($this->arguments);
-	}
+    public function getArgumentCount()
+    {
+        return count($this->arguments);
+    }
 
-	/**
-	 * @return boolean
-	 */
+    /**
+     * @return boolean
+     */
 
-	public function hasArgument($name)
-	{
-		return isset($this->arguments[$name]);
-	}
+    public function hasArgument($name)
+    {
+        return isset($this->arguments[$name]);
+    }
 
-	/**
-	 * Overwrite this method to parse and validate the arguments in a
-	 * new Annotation definition.
-	 *
-	 * @return void
-	 */
+    /**
+     * Overwrite this method to parse and validate the arguments in a
+     * new Annotation definition.
+     *
+     * @return void
+     */
 
-	protected function filter()
-	{
-		// void
-	}
+    protected function filter()
+    {
+        // void
+    }
 
-	/**
-	 * @return string
-	 */
+    /**
+     * @return string
+     */
 
-	public function __toString()
-	{
-		if (count($this->arguments) === 1) {
-			return (string) $this->arguments[0];
-		}
+    public function __toString()
+    {
+        if (count($this->arguments) === 1) {
+            return (string) $this->arguments[0];
+        }
 
-		throw new Exceptions\AnnotationException("The annotation cannot be converted to string.");
-	}
+        throw new Exceptions\AnnotationException("The annotation cannot be converted to string.");
+    }
 
 }

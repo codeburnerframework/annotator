@@ -19,9 +19,9 @@ namespace Codeburner\Annotator\Exceptions;
 class BadAnnotationException extends AnnotationException
 {
 
-	public function __construct($annotation)
-	{
-		parent::__construct("The `$annotation` annotation was used wrong. Please check the arguments.");
-	}
+    public function __construct($annotation)
+    {
+        parent::__construct("The `$annotation` annotation was used wrong. Please check the arguments.");
+    }
 
 }

@@ -16,7 +16,7 @@ namespace Codeburner\Annotator\Reflection;
  */
 
 if (!trait_exists('Codeburner\Annotator\Reflection\AnnotationTrait', false)) {
-	include __DIR__ . '/AnnotationTrait.php';
+    include __DIR__ . '/AnnotationTrait.php';
 }
 
 /**
@@ -27,5 +27,5 @@ if (!trait_exists('Codeburner\Annotator\Reflection\AnnotationTrait', false)) {
 
 class ReflectionAnnotatedFunction extends \ReflectionFunction
 {
-	use AnnotationTrait;
+    use AnnotationTrait;
 }

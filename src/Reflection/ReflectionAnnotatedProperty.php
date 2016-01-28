@@ -16,7 +16,7 @@ namespace Codeburner\Annotator\Reflection;
  */
 
 if (!trait_exists('Codeburner\Annotator\Reflection\AnnotationTrait', false)) {
-	include __DIR__ . '/AnnotationTrait.php';
+    include __DIR__ . '/AnnotationTrait.php';
 }
 
 /**
@@ -27,26 +27,26 @@ if (!trait_exists('Codeburner\Annotator\Reflection\AnnotationTrait', false)) {
 
 class ReflectionAnnotatedProperty extends \ReflectionProperty
 {
-	use AnnotationTrait;
+    use AnnotationTrait;
 
-	/**
-	 * @return string
-	 */
+    /**
+     * @return string
+     */
 
-	public function getNamespaceName()
-	{
-		return $this->class->getNamespaceName();
-	}
+    public function getNamespaceName()
+    {
+        return $this->class->getNamespaceName();
+    }
 
-	/**
-	 * Get the property class start line.
-	 *
-	 * @return int
-	 */
+    /**
+     * Get the property class start line.
+     *
+     * @return int
+     */
 
-	public function getStartLine()
-	{
-		return $this->class->getStartLine();
-	}
+    public function getStartLine()
+    {
+        return $this->class->getStartLine();
+    }
 
 }

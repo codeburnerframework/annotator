@@ -20,7 +20,7 @@ use ReflectionMethod;
  */
 
 if (!trait_exists('Codeburner\Annotator\Reflection\AnnotationTrait', false)) {
-	include __DIR__ . '/AnnotationTrait.php';
+    include __DIR__ . '/AnnotationTrait.php';
 }
 
 /**
@@ -32,76 +32,76 @@ if (!trait_exists('Codeburner\Annotator\Reflection\AnnotationTrait', false)) {
 class ReflectionAnnotatedClass extends ReflectionClass
 {
 
-	use AnnotationTrait;
+    use AnnotationTrait;
 
-	/**
-	 * {inheritDoc}
-	 */
+    /**
+     * {inheritDoc}
+     */
 
-	public function getProperties($filter = null)
-	{
-		$defaultFilter = ReflectionProperty::IS_STATIC    | ReflectionProperty::IS_PUBLIC | 
-						 ReflectionProperty::IS_PROTECTED | ReflectionProperty::IS_PRIVATE;
-		$properties = parent::getProperties($filter === null ? $defaultFilter : $filter);
-		$annotatedProperties = [];
+    public function getProperties($filter = null)
+    {
+        $defaultFilter = ReflectionProperty::IS_STATIC    | ReflectionProperty::IS_PUBLIC | 
+                         ReflectionProperty::IS_PROTECTED | ReflectionProperty::IS_PRIVATE;
+        $properties = parent::getProperties($filter === null ? $defaultFilter : $filter);
+        $annotatedProperties = [];
 
-		foreach ($properties as $property) {
-			$annotatedProperties[] = new ReflectionAnnotatedProperty($this->name, $property->name);
-		}
+        foreach ($properties as $property) {
+            $annotatedProperties[] = new ReflectionAnnotatedProperty($this->name, $property->name);
+        }
 
-		return $annotatedProperties;
-	}
+        return $annotatedProperties;
+    }
 
-	/**
-	 * {inheritDoc}
-	 */
+    /**
+     * {inheritDoc}
+     */
 
-	public function getProperty($name)
-	{
-		return new ReflectionAnnotatedProperty($this->name, $name);
-	}
+    public function getProperty($name)
+    {
+        return new ReflectionAnnotatedProperty($this->name, $name);
+    }
 
-	/**
-	 * {inheritDoc}
-	 */
+    /**
+     * {inheritDoc}
+     */
 
-	public function getMethods($filter = null)
-	{
-		$defaultFilter = ReflectionMethod::IS_STATIC  | ReflectionMethod::IS_PUBLIC   | ReflectionMethod::IS_PROTECTED | 
-						 ReflectionMethod::IS_PRIVATE | ReflectionMethod::IS_ABSTRACT | ReflectionMethod::IS_FINAL;
-		$methods = parent::getMethods($filter === null ? $defaultFilter : $filter);
-		$annotatedMethods = [];
+    public function getMethods($filter = null)
+    {
+        $defaultFilter = ReflectionMethod::IS_STATIC  | ReflectionMethod::IS_PUBLIC   | ReflectionMethod::IS_PROTECTED | 
+                         ReflectionMethod::IS_PRIVATE | ReflectionMethod::IS_ABSTRACT | ReflectionMethod::IS_FINAL;
+        $methods = parent::getMethods($filter === null ? $defaultFilter : $filter);
+        $annotatedMethods = [];
 
-		foreach ($methods as $method) {
-			$annotatedMethods[] = new ReflectionAnnotatedMethod($this->name, $method->name);
-		}
+        foreach ($methods as $method) {
+            $annotatedMethods[] = new ReflectionAnnotatedMethod($this->name, $method->name);
+        }
 
-		return $annotatedMethods;
-	}
+        return $annotatedMethods;
+    }
 
-	/**
-	 * {inheritDoc}
-	 */
+    /**
+     * {inheritDoc}
+     */
 
-	public function getMethod($name)
-	{
-		return new ReflectionAnnotatedMethod($this->name, $name);
-	}
+    public function getMethod($name)
+    {
+        return new ReflectionAnnotatedMethod($this->name, $name);
+    }
 
-	/**
-	 * {inheritDoc}
-	 */
+    /**
+     * {inheritDoc}
+     */
 
-	public function getTraits($filter = null)
-	{
-		$traits = parent::getTraits();
-		$annotatedTraits = [];
+    public function getTraits($filter = null)
+    {
+        $traits = parent::getTraits();
+        $annotatedTraits = [];
 
-		foreach ($traits as $trait) {
-			$annotatedTraits[] = new ReflectionAnnotatedClass($trait->name);
-		}
+        foreach ($traits as $trait) {
+            $annotatedTraits[] = new ReflectionAnnotatedClass($trait->name);
+        }
 
-		return $annotatedTraits;
-	}
+        return $annotatedTraits;
+    }
 
 }
